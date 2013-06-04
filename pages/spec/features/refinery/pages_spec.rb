@@ -381,10 +381,12 @@ module Refinery
           current_path.should == "/#{en_page_slug}"
         end
 
-        xit "should redirect to second locale slug" do
+        it "should redirect to second locale slug" do
           visit "/ru/#{en_page_slug}"
 
           current_path.should == "/ru/#{ru_page_slug_encoded}"
+
+          visit "/en/#{en_page_slug}"
         end
 
         describe "nested page" do
@@ -404,10 +406,12 @@ module Refinery
             _page
           end
 
-          xit "should redirect to localized url" do
+          it "should redirect to localized url" do
             visit "/ru/#{en_page_slug}/#{nested_page_slug}"
 
             current_path.should == "/ru/#{ru_page_slug_encoded}/#{nested_page_slug}"
+
+            visit "/en/#{en_page_slug}/#{nested_page_slug}"
           end
         end
       end
